@@ -20,6 +20,7 @@ class RadixViewsGridPluginStyle extends views_plugin_style {
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
 
+    // Show this option only if grouping is enabled.
     if (!empty($form['grouping'])) {
       $form['views_group_col_class'] = array(
         '#type' => 'textfield',

@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Theme and preprocess functions for radix_views.
+ */
+
+/**
  * Template preprocess theme function to print the Radix grid.
  */
 function template_preprocess_radix_views_grid_plugin_style(&$variables) {
@@ -27,5 +32,6 @@ function template_preprocess_radix_views_grid_plugin_style(&$variables) {
     $variables['rows'] = array_chunk($variables['rows'] , $variables['views_row_col_size']);
   }
 
+  // Determine if views has grouping and add to template.
   $variables['has_grouping'] = !empty($variables['grouping']);
 }

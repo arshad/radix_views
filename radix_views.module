@@ -25,6 +25,8 @@ function radix_views_process_views_view(&$variables) {
       if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $options['views_group_col_class'], $matches)) {
         $variables['views_group_col_class_size'] = $matches[1];
         $variables['views_group_col_size'] = floor(12 / $matches[1]);
+
+        // We are going to create a row only if there's more than 1 column.
         if ($variables['views_group_col_size'] != 1) {
           $variables['view_content_class'] = 'view-content row';
         }

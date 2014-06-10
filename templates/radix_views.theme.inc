@@ -14,17 +14,20 @@ function template_preprocess_radix_views_grid_plugin_style(&$variables) {
 
   // Add options to template.
   foreach ($options as $option => $value) {
+    if (is_array($value)) {
+      $value = !empty($value['default']) ? $value['default'] : $value;
+    }
     $variables[$option] = $value;
   }
 
   // Get views group col size from class.
-  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $options['views_group_col_class'], $matches)) {
+  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $variables['views_group_col_class'], $matches)) {
     $variables['views_group_col_class_size'] = $matches[1];
     $variables['views_group_col_size'] = floor(12 / $matches[1]);
   }
 
   // Get views row col size from class.
-  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $options['views_row_col_class'], $matches)) {
+  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $variables['views_row_col_class'], $matches)) {
     $variables['views_row_col_class_size'] = $matches[1];
     $variables['views_row_col_size'] = floor(12 / $matches[1]);
 

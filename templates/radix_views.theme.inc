@@ -23,7 +23,7 @@ function template_preprocess_radix_views_grid_plugin_style(&$variables) {
   // By default, use regex for Bootstrap.
   $grid_regex = 'col\-[xs|sm|md|lg]*\-([0-9]{1,2})';
 
-  // Get grid regex from theme.
+  // Get grid regex from a Radix-based theme.
   if (function_exists('radix_get_grid_regex')) {
     $grid_regex = radix_get_grid_regex();
   }

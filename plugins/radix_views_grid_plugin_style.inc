@@ -13,12 +13,22 @@ class RadixViewsGridPluginStyle extends views_plugin_style {
    */
   function options(&$options) {
     parent::options($options);
+    $options['views_row_class'] = array('default' => 'row');
     $options['views_group_col_class'] = array('default' => 'col-md-12');
     $options['views_row_col_class'] = array('default' => 'col-md-12');
   }
 
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
+
+    $form['views_row_class'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Row class'),
+      '#description' => t('The grid class to for a row.'),
+      '#options' => array_combine($options, $options),
+      '#required' => TRUE,
+      '#default_value' => $this->options['views_row_class'],
+    );
 
     // Show this option only if grouping is enabled.
     if (!empty($form['grouping'])) {

@@ -20,14 +20,22 @@ function template_preprocess_radix_views_grid_plugin_style(&$variables) {
     $variables[$option] = $value;
   }
 
+  // By default, use regex for Bootstrap.
+  $grid_regex = 'col\-[xs|sm|md|lg]*\-([0-9]{1,2})';
+
+  // Get grid regex from a Radix-based theme.
+  if (function_exists('radix_get_grid_regex')) {
+    $grid_regex = radix_get_grid_regex();
+  }
+
   // Get views group col size from class.
-  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $variables['views_group_col_class'], $matches)) {
+  if (preg_match("/$grid_regex/", $variables['views_group_col_class'], $matches)) {
     $variables['views_group_col_class_size'] = $matches[1];
     $variables['views_group_col_size'] = floor(12 / $matches[1]);
   }
 
   // Get views row col size from class.
-  if (preg_match("/col\-[xs|sm|md|lg]*\-([0-9]{1,2})/", $variables['views_row_col_class'], $matches)) {
+  if (preg_match("/$grid_regex/", $variables['views_row_col_class'], $matches)) {
     $variables['views_row_col_class_size'] = $matches[1];
     $variables['views_row_col_size'] = floor(12 / $matches[1]);
 
